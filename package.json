@@ -1,0 +1,53 @@
+{
+  "name": "india-faker",
+  "version": "1.0.0",
+  "description": "Realistic Indian test data generator — names, addresses, UPI IDs, students, banking & more.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "scripts": {
+    "test": "node examples/basic.js"
+  },
+  "keywords": [
+    "faker",
+    "india",
+    "indian",
+    "test-data",
+    "mock-data",
+    "fake-data",
+    "generator",
+    "aadhaar",
+    "upi",
+    "address",
+    "names",
+    "student",
+    "banking",
+    "ecommerce",
+    "bharat",
+    "desi",
+    "data",
+    "dummy"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/YOUR_USERNAME/india-faker"
+  },
+  "bugs": {
+    "url": "https://github.com/YOUR_USERNAME/india-faker/issues"
+  },
+  "homepage": "https://github.com/YOUR_USERNAME/india-faker#readme",
+  "engines": {
+    "node": ">=16.0.0"
+  },
+  "files": [
+    "index.js",
+    "src/",
+    "README.md",
+    "LICENSE"
+  ],
+  "dependencies": {}
+}
