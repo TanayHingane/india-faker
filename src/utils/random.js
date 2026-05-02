@@ -1,6 +1,5 @@
-let seed = null;
+let rng = Math.random;
 
-// Simple seeded PRNG (mulberry32)
 function mulberry32(a) {
   return function () {
     a |= 0;
@@ -11,38 +10,37 @@ function mulberry32(a) {
   };
 }
 
-let rng = Math.random;
-
-export function setSeed(s) {
-  seed = s;
+function setSeed(s) {
   rng = mulberry32(s);
 }
-
-export function clearSeed() {
-  seed = null;
+function clearSeed() {
   rng = Math.random;
 }
-
-export function random() {
+function random() {
   return rng();
 }
-
-export function randomInt(min, max) {
+function randomInt(min, max) {
   return Math.floor(random() * (max - min + 1)) + min;
 }
-
-export function randomItem(arr) {
+function randomItem(arr) {
   return arr[Math.floor(random() * arr.length)];
 }
-
-export function randomFloat(min, max, decimals = 1) {
+function randomFloat(min, max, decimals) {
+  decimals = decimals || 1;
   return parseFloat((random() * (max - min) + min).toFixed(decimals));
 }
-
-export function randomDigits(length) {
-  let result = "";
-  for (let i = 0; i < length; i++) {
-    result += randomInt(0, 9);
-  }
-  return result;
+function randomDigits(length) {
+  let r = "";
+  for (let i = 0; i < length; i++) r += randomInt(0, 9);
+  return r;
 }
+
+module.exports = {
+  setSeed,
+  clearSeed,
+  random,
+  randomInt,
+  randomItem,
+  randomFloat,
+  randomDigits,
+};

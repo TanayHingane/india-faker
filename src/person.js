@@ -1,55 +1,56 @@
-import { maleFirstNames, femaleFirstNames, lastNames } from "./data/names.js";
-import { emailDomains } from "./data/misc.js";
-import { randomItem, randomInt, randomDigits, random } from "./utils/random.js";
+const { maleFirstNames, femaleFirstNames, lastNames } = require("./data/names");
+const { emailDomains } = require("./data/misc");
+const {
+  randomItem,
+  randomInt,
+  randomDigits,
+  random,
+} = require("./utils/random");
 
 const regions = ["north", "south", "west", "east"];
 
-/**
- * Generate a realistic Indian person profile.
- * @param {Object} options
- * @param {'male'|'female'} [options.gender] - Force a specific gender
- * @param {'north'|'south'|'west'|'east'} [options.region] - Force a specific region
- * @returns {Object} Person object
- */
-export function person(options = {}) {
+function person(options) {
+  options = options || {};
   const region = options.region || randomItem(regions);
   const gender = options.gender || (random() > 0.5 ? "male" : "female");
-
-  const firstNamePool =
+  const firstPool =
     gender === "male" ? maleFirstNames[region] : femaleFirstNames[region];
-  const firstName = randomItem(firstNamePool);
+  const firstName = randomItem(firstPool);
   const lastName = randomItem(lastNames[region]);
-  const name = `${firstName} ${lastName}`;
-
+  const name = firstName + " " + lastName;
   const phonePrefix = randomItem(["9", "8", "7", "6"]);
-  const phone = `+91 ${phonePrefix}${randomDigits(9)}`;
-
-  const emailUser = `${firstName.toLowerCase()}.${lastName.toLowerCase()}${randomInt(0, 99) > 90 ? randomInt(1, 99) : ""}`;
-  const email = `${emailUser}@${randomItem(emailDomains)}`;
-
-  return { name, gender, phone, email, region };
+  const ph = "+91 " + phonePrefix + randomDigits(9);
+  const emailSuffix = randomInt(0, 99) > 90 ? randomInt(1, 99) : "";
+  const em =
+    firstName.toLowerCase() +
+    "." +
+    lastName.toLowerCase() +
+    emailSuffix +
+    "@" +
+    randomItem(emailDomains);
+  return { name, gender, phone: ph, email: em, region };
 }
 
-/**
- * Generate only a phone number.
- * @returns {string} Phone in +91 XXXXXXXXXX format
- */
-export function phone() {
+function phone() {
+  const { randomItem, randomDigits } = require("./utils/random");
   const prefix = randomItem(["9", "8", "7", "6"]);
-  return `+91 ${prefix}${randomDigits(9)}`;
+  return "+91 " + prefix + randomDigits(9);
 }
 
-/**
- * Generate only an email.
- * @param {string} [name] - Optional name to base email on
- * @returns {string}
- */
-export function email(name) {
+function email(name) {
   if (name) {
     const parts = name.toLowerCase().split(" ");
-    return `${parts.join(".")}@${randomItem(emailDomains)}`;
+    return parts.join(".") + "@" + randomItem(emailDomains);
   }
   const firstName = randomItem(maleFirstNames.north);
   const lastName = randomItem(lastNames.north);
-  return `${firstName.toLowerCase()}.${lastName.toLowerCase()}@${randomItem(emailDomains)}`;
+  return (
+    firstName.toLowerCase() +
+    "." +
+    lastName.toLowerCase() +
+    "@" +
+    randomItem(emailDomains)
+  );
 }
+
+module.exports = { person, phone, email };

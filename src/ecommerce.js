@@ -1,48 +1,41 @@
-import { products, paymentMethods, orderStatuses } from "./data/misc.js";
-import { randomItem, randomInt, randomDigits, random } from "./utils/random.js";
+const { products, paymentMethods, orderStatuses } = require("./data/misc");
+const {
+  randomItem,
+  randomInt,
+  randomDigits,
+  random,
+} = require("./utils/random");
 
-/**
- * Generate a fake e-commerce order.
- * @returns {Object}
- */
-export function order() {
-  const product = randomItem(products);
-  const price = randomInt(product.priceRange[0], product.priceRange[1]);
-  const payment = randomItem(paymentMethods);
-  const status = randomItem(orderStatuses);
-  const orderId = `ORD${randomDigits(10)}`;
-  const quantity = randomInt(1, 3);
-
+function order() {
+  const p = randomItem(products);
+  const price = randomInt(p.priceRange[0], p.priceRange[1]);
+  const qty = randomInt(1, 3);
   return {
-    orderId,
-    product: product.name,
-    quantity,
+    orderId: "ORD" + randomDigits(10),
+    product: p.name,
+    quantity: qty,
     price,
-    totalAmount: price * quantity,
-    payment,
-    status,
+    totalAmount: price * qty,
+    payment: randomItem(paymentMethods),
+    status: randomItem(orderStatuses),
   };
 }
 
-/**
- * Generate a product listing.
- * @returns {Object}
- */
-export function product() {
+function product() {
   const p = randomItem(products);
   const price = randomInt(p.priceRange[0], p.priceRange[1]);
   const discount = randomInt(5, 40);
   const mrp = Math.round(price / (1 - discount / 100));
-  const sku = `SKU${randomDigits(8)}`;
-
   return {
-    sku,
+    sku: "SKU" + randomDigits(8),
     name: p.name,
     price,
     mrp,
-    discount: `${discount}%`,
+    discount: discount + "%",
     inStock: random() > 0.15,
-    rating: parseFloat((3 + Math.random() * 2).toFixed(1)),
+    rating: parseFloat((3 + random() * 2).toFixed(1)),
     reviews: randomInt(5, 9999),
   };
 }
+
+module.exports = { order, product };

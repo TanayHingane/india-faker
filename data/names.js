@@ -1,4 +1,4 @@
-export const maleFirstNames = {
+const maleFirstNames = {
   north: [
     "Aarav",
     "Vihaan",
@@ -90,7 +90,7 @@ export const maleFirstNames = {
   ],
 };
 
-export const femaleFirstNames = {
+const femaleFirstNames = {
   north: [
     "Ananya",
     "Isha",
@@ -181,7 +181,7 @@ export const femaleFirstNames = {
   ],
 };
 
-export const lastNames = {
+const lastNames = {
   north: [
     "Sharma",
     "Verma",
@@ -272,3 +272,5 @@ export const lastNames = {
     "Guha",
   ],
 };
+
+module.exports = { maleFirstNames, femaleFirstNames, lastNames };

@@ -1,16 +1,58 @@
-export const colleges = [
-  "IIT Bombay", "IIT Delhi", "IIT Madras", "IIT Kanpur", "IIT Kharagpur",
-  "NIT Trichy", "NIT Surathkal", "NIT Warangal", "NIT Calicut", "NIT Rourkela",
-  "Pune University", "Mumbai University", "Delhi University", "Calcutta University", "Madras University",
-  "Osmania University", "Anna University", "Bangalore University", "Jadavpur University", "Amity University",
-  "VIT Vellore", "SRM University", "Manipal Institute of Technology", "BITS Pilani", "Christ University",
-  "COEP Pune", "VJTI Mumbai", "Sardar Patel Institute of Technology", "DJ Sanghvi College", "K.J. Somaiya",
+const colleges = [
+  "IIT Bombay",
+  "IIT Delhi",
+  "IIT Madras",
+  "IIT Kanpur",
+  "IIT Kharagpur",
+  "NIT Trichy",
+  "NIT Surathkal",
+  "NIT Warangal",
+  "NIT Calicut",
+  "NIT Rourkela",
+  "Pune University",
+  "Mumbai University",
+  "Delhi University",
+  "Calcutta University",
+  "Madras University",
+  "Osmania University",
+  "Anna University",
+  "Bangalore University",
+  "Jadavpur University",
+  "Amity University",
+  "VIT Vellore",
+  "SRM University",
+  "Manipal Institute of Technology",
+  "BITS Pilani",
+  "Christ University",
+  "COEP Pune",
+  "VJTI Mumbai",
+  "Sardar Patel Institute of Technology",
+  "DJ Sanghvi College",
+  "K.J. Somaiya",
 ];
-
-export const courses = ["BE", "BTech", "MCA", "BCA", "BSc IT", "MSc CS", "MBA", "BMS", "BCom", "BA"];
-export const branches = ["Computer Science", "Information Technology", "Electronics", "Mechanical", "Civil", "Electrical", "Chemical", "Instrumentation"];
-
-export const banks = [
+const courses = [
+  "BE",
+  "BTech",
+  "MCA",
+  "BCA",
+  "BSc IT",
+  "MSc CS",
+  "MBA",
+  "BMS",
+  "BCom",
+  "BA",
+];
+const branches = [
+  "Computer Science",
+  "Information Technology",
+  "Electronics",
+  "Mechanical",
+  "Civil",
+  "Electrical",
+  "Chemical",
+  "Instrumentation",
+];
+const banks = [
   { name: "State Bank of India", ifscPrefix: "SBIN" },
   { name: "HDFC Bank", ifscPrefix: "HDFC" },
   { name: "ICICI Bank", ifscPrefix: "ICIC" },
@@ -27,10 +69,19 @@ export const banks = [
   { name: "Karnataka Bank", ifscPrefix: "KARB" },
   { name: "UCO Bank", ifscPrefix: "UCBA" },
 ];
-
-export const upiHandles = ["@okaxis", "@ybl", "@oksbi", "@okhdfcbank", "@paytm", "@apl", "@ibl", "@upi", "@icici", "@kotak"];
-
-export const products = [
+const upiHandles = [
+  "@okaxis",
+  "@ybl",
+  "@oksbi",
+  "@okhdfcbank",
+  "@paytm",
+  "@apl",
+  "@ibl",
+  "@upi",
+  "@icici",
+  "@kotak",
+];
+const products = [
   { name: "Wireless Earbuds", priceRange: [799, 4999] },
   { name: "Smartwatch", priceRange: [1499, 19999] },
   { name: "Phone Case", priceRange: [99, 799] },
@@ -39,21 +90,56 @@ export const products = [
   { name: "Laptop Bag", priceRange: [499, 2499] },
   { name: "Keyboard", priceRange: [499, 5999] },
   { name: "Mouse", priceRange: [299, 3499] },
-  { name: "HDMI Cable", priceRange: [199, 999] },
+  { name: "Bluetooth Speaker", priceRange: [799, 7999] },
   { name: "Neck Pillow", priceRange: [299, 1499] },
   { name: "Water Bottle", priceRange: [199, 999] },
-  { name: "Sunglasses", priceRange: [299, 2999] },
   { name: "Running Shoes", priceRange: [999, 6999] },
   { name: "Yoga Mat", priceRange: [399, 2499] },
   { name: "Pressure Cooker", priceRange: [799, 4999] },
   { name: "Air Fryer", priceRange: [2999, 9999] },
   { name: "Ceiling Fan", priceRange: [1499, 5999] },
-  { name: "Table Lamp", priceRange: [399, 2499] },
   { name: "Backpack", priceRange: [599, 3999] },
-  { name: "Bluetooth Speaker", priceRange: [799, 7999] },
+  { name: "Table Lamp", priceRange: [399, 2499] },
+];
+const paymentMethods = [
+  "UPI",
+  "Cash on Delivery",
+  "Debit Card",
+  "Credit Card",
+  "Net Banking",
+  "EMI",
+  "PhonePe",
+  "Google Pay",
+  "Paytm",
+];
+const orderStatuses = [
+  "Pending",
+  "Confirmed",
+  "Processing",
+  "Shipped",
+  "Out for Delivery",
+  "Delivered",
+  "Cancelled",
+  "Returned",
+];
+const emailDomains = [
+  "gmail.com",
+  "yahoo.co.in",
+  "hotmail.com",
+  "outlook.com",
+  "rediffmail.com",
+  "ymail.com",
+  "protonmail.com",
 ];
 
-export const paymentMethods = ["UPI", "Cash on Delivery", "Debit Card", "Credit Card", "Net Banking", "EMI", "PhonePe", "Google Pay", "Paytm"];
-export const orderStatuses = ["Pending", "Confirmed", "Processing", "Shipped", "Out for Delivery", "Delivered", "Cancelled", "Returned"];
-
-export const emailDomains = ["gmail.com", "yahoo.co.in", "hotmail.com", "outlook.com", "rediffmail.com", "ymail.com", "protonmail.com"];
+module.exports = {
+  colleges,
+  courses,
+  branches,
+  banks,
+  upiHandles,
+  products,
+  paymentMethods,
+  orderStatuses,
+  emailDomains,
+};

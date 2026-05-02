@@ -4,11 +4,39 @@
  * ⚠️ All generated data is FAKE and for testing/development purposes only.
  */
 
-export { person, phone, email } from "./src/person.js";
-export { address, city, stateName, cityState, pincode } from "./src/address.js";
-export { student } from "./src/student.js";
-export { order, product } from "./src/ecommerce.js";
-export { bank, ifsc } from "./src/banking.js";
-export { aadhaar, pan, upi } from "./src/identity.js";
-export { generate } from "./src/generate.js";
-export { setSeed, clearSeed } from "./src/utils/random.js";
+const { person, phone, email } = require("./src/person");
+const {
+  address,
+  city,
+  stateName,
+  cityState,
+  pincode,
+} = require("./src/address");
+const { student } = require("./src/student");
+const { order, product } = require("./src/ecommerce");
+const { bank, ifsc } = require("./src/banking");
+const { aadhaar, pan, upi } = require("./src/identity");
+const { generate } = require("./src/generate");
+const { setSeed, clearSeed } = require("./src/utils/random");
+
+module.exports = {
+  person,
+  phone,
+  email,
+  address,
+  city,
+  stateName,
+  cityState,
+  pincode,
+  student,
+  order,
+  product,
+  bank,
+  ifsc,
+  aadhaar,
+  pan,
+  upi,
+  generate,
+  setSeed,
+  clearSeed,
+};
