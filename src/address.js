@@ -1,376 +1,73 @@
-export const stateData = [
-  {
-    state: "Maharashtra",
-    cities: [
-      "Mumbai",
-      "Pune",
-      "Nagpur",
-      "Nashik",
-      "Aurangabad",
-      "Solapur",
-      "Kolhapur",
-      "Thane",
-      "Amravati",
-      "Nanded",
-    ],
-    pinPrefix: [
-      "400",
-      "411",
-      "440",
-      "422",
-      "431",
-      "413",
-      "416",
-      "421",
-      "444",
-      "431",
-    ],
-  },
-  {
-    state: "Karnataka",
-    cities: [
-      "Bengaluru",
-      "Mysuru",
-      "Hubballi",
-      "Mangaluru",
-      "Belagavi",
-      "Kalaburagi",
-      "Davanagere",
-      "Ballari",
-      "Vijayapura",
-      "Shimoga",
-    ],
-    pinPrefix: [
-      "560",
-      "570",
-      "580",
-      "575",
-      "590",
-      "585",
-      "577",
-      "583",
-      "586",
-      "577",
-    ],
-  },
-  {
-    state: "Tamil Nadu",
-    cities: [
-      "Chennai",
-      "Coimbatore",
-      "Madurai",
-      "Tiruchirappalli",
-      "Salem",
-      "Tirunelveli",
-      "Erode",
-      "Vellore",
-      "Thoothukudi",
-      "Tiruppur",
-    ],
-    pinPrefix: [
-      "600",
-      "641",
-      "625",
-      "620",
-      "636",
-      "627",
-      "638",
-      "632",
-      "628",
-      "641",
-    ],
-  },
-  {
-    state: "Delhi",
-    cities: [
-      "New Delhi",
-      "Dwarka",
-      "Rohini",
-      "Shahdara",
-      "Janakpuri",
-      "Lajpat Nagar",
-      "Karol Bagh",
-      "Connaught Place",
-      "Saket",
-      "Pitampura",
-    ],
-    pinPrefix: [
-      "110",
-      "110",
-      "110",
-      "110",
-      "110",
-      "110",
-      "110",
-      "110",
-      "110",
-      "110",
-    ],
-  },
-  {
-    state: "Gujarat",
-    cities: [
-      "Ahmedabad",
-      "Surat",
-      "Vadodara",
-      "Rajkot",
-      "Bhavnagar",
-      "Jamnagar",
-      "Gandhinagar",
-      "Anand",
-      "Junagadh",
-      "Mehsana",
-    ],
-    pinPrefix: [
-      "380",
-      "395",
-      "390",
-      "360",
-      "364",
-      "361",
-      "382",
-      "388",
-      "362",
-      "384",
-    ],
-  },
-  {
-    state: "Rajasthan",
-    cities: [
-      "Jaipur",
-      "Jodhpur",
-      "Udaipur",
-      "Kota",
-      "Bikaner",
-      "Ajmer",
-      "Bharatpur",
-      "Sikar",
-      "Alwar",
-      "Barmer",
-    ],
-    pinPrefix: [
-      "302",
-      "342",
-      "313",
-      "324",
-      "334",
-      "305",
-      "321",
-      "332",
-      "301",
-      "344",
-    ],
-  },
-  {
-    state: "Uttar Pradesh",
-    cities: [
-      "Lucknow",
-      "Kanpur",
-      "Agra",
-      "Varanasi",
-      "Meerut",
-      "Allahabad",
-      "Ghaziabad",
-      "Noida",
-      "Bareilly",
-      "Aligarh",
-    ],
-    pinPrefix: [
-      "226",
-      "208",
-      "282",
-      "221",
-      "250",
-      "211",
-      "201",
-      "201",
-      "243",
-      "202",
-    ],
-  },
-  {
-    state: "West Bengal",
-    cities: [
-      "Kolkata",
-      "Asansol",
-      "Siliguri",
-      "Durgapur",
-      "Bardhaman",
-      "Malda",
-      "Baharampur",
-      "Habra",
-      "Kharagpur",
-      "Shantipur",
-    ],
-    pinPrefix: [
-      "700",
-      "713",
-      "734",
-      "713",
-      "713",
-      "732",
-      "742",
-      "743",
-      "721",
-      "741",
-    ],
-  },
-  {
-    state: "Telangana",
-    cities: [
-      "Hyderabad",
-      "Warangal",
-      "Nizamabad",
-      "Khammam",
-      "Karimnagar",
-      "Ramagundam",
-      "Mahbubnagar",
-      "Nalgonda",
-      "Adilabad",
-      "Suryapet",
-    ],
-    pinPrefix: [
-      "500",
-      "506",
-      "503",
-      "507",
-      "505",
-      "505",
-      "509",
-      "508",
-      "504",
-      "508",
-    ],
-  },
-  {
-    state: "Kerala",
-    cities: [
-      "Thiruvananthapuram",
-      "Kochi",
-      "Kozhikode",
-      "Thrissur",
-      "Kollam",
-      "Palakkad",
-      "Alappuzha",
-      "Kannur",
-      "Kottayam",
-      "Malappuram",
-    ],
-    pinPrefix: [
-      "695",
-      "682",
-      "673",
-      "680",
-      "691",
-      "678",
-      "688",
-      "670",
-      "686",
-      "676",
-    ],
-  },
-  {
-    state: "Punjab",
-    cities: [
-      "Ludhiana",
-      "Amritsar",
-      "Jalandhar",
-      "Patiala",
-      "Bathinda",
-      "Mohali",
-      "Pathankot",
-      "Hoshiarpur",
-      "Gurdaspur",
-      "Moga",
-    ],
-    pinPrefix: [
-      "141",
-      "143",
-      "144",
-      "147",
-      "151",
-      "160",
-      "145",
-      "146",
-      "143",
-      "142",
-    ],
-  },
-  {
-    state: "Haryana",
-    cities: [
-      "Faridabad",
-      "Gurgaon",
-      "Panipat",
-      "Ambala",
-      "Yamunanagar",
-      "Rohtak",
-      "Hisar",
-      "Karnal",
-      "Sonipat",
-      "Panchkula",
-    ],
-    pinPrefix: [
-      "121",
-      "122",
-      "132",
-      "134",
-      "135",
-      "124",
-      "125",
-      "132",
-      "131",
-      "134",
-    ],
-  },
-];
+import {
+  states,
+  streetTypes,
+  streetNames,
+  flatTypes,
+  getPincodeForState,
+} from "./data/locations.js";
+import { randomItem, randomInt } from "./utils/random.js";
 
-export const streetTypes = [
-  "Marg",
-  "Road",
-  "Lane",
-  "Nagar",
-  "Colony",
-  "Society",
-  "Enclave",
-  "Vihar",
-  "Puram",
-  "Galli",
-];
-export const societyPrefixes = [
-  "Shree",
-  "Sai",
-  "Laxmi",
-  "Ganesh",
-  "Saraswati",
-  "Radha",
-  "Krishna",
-  "Om",
-  "Shiv",
-  "Durga",
-];
-export const societySuffixes = [
-  "Residency",
-  "Apartments",
-  "Heights",
-  "Tower",
-  "Complex",
-  "Society",
-  "Enclave",
-  "Plaza",
-  "Arcade",
-  "Villa",
-];
-export const streetNames = [
-  "MG",
-  "Nehru",
-  "Gandhi",
-  "Patel",
-  "Tilak",
-  "Subhash",
-  "Ambedkar",
-  "Shivaji",
-  "Sardar",
-  "Rajiv",
-];
-export const flatTypes = ["Flat", "Room No.", "Shop", "Unit", "Office"];
+/**
+ * Generate a realistic Indian address.
+ * @param {Object} options
+ * @param {'north'|'south'|'west'|'east'} [options.region] - Filter by region
+ * @param {string} [options.state] - Force a specific state name
+ * @returns {Object} Address object
+ */
+export function address(options = {}) {
+  let statePool = states;
+
+  if (options.region) {
+    statePool = states.filter((s) => s.region === options.region);
+  }
+  if (options.state) {
+    statePool = states.filter(
+      (s) => s.name.toLowerCase() === options.state.toLowerCase(),
+    );
+  }
+
+  const stateObj = randomItem(statePool.length ? statePool : states);
+  const city = randomItem(stateObj.cities);
+  const pincode = getPincodeForState(stateObj.name);
+
+  const flatNum = `${randomItem(flatTypes)} ${randomInt(1, 999)}`;
+  const building = `${randomItem(streetNames)} ${randomItem(streetTypes)}`;
+  const addressLine = `${flatNum}, ${building}`;
+
+  return {
+    addressLine,
+    city,
+    state: stateObj.name,
+    pincode,
+  };
+}
+
+/**
+ * Generate only a city and state pair.
+ */
+export function cityState(options = {}) {
+  const { city, state } = address(options);
+  return { city, state };
+}
+
+/**
+ * Get a random Indian state name.
+ */
+export function stateName() {
+  return randomItem(states).name;
+}
+
+/**
+ * Get a random Indian city.
+ */
+export function city() {
+  const s = randomItem(states);
+  return randomItem(s.cities);
+}
+
+/**
+ * Generate a random Indian PIN code.
+ */
+export function pincode(stateName) {
+  return getPincodeForState(stateName || randomItem(states).name);
+}

@@ -1,88 +1,48 @@
-import {
-  products,
-  orderStatuses,
-  paymentMethods,
-  couriers,
-} from "./data/domain.js";
-import { person } from "./person.js";
-import { address } from "./address.js";
-import { pick, randomInt } from "./utils/random.js";
-
-const orderIdPrefixes = ["OD", "FK", "AM", "MN", "AJ"];
-
-function generateOrderId() {
-  const prefix = pick(orderIdPrefixes);
-  const timestamp = Date.now().toString().slice(-8);
-  return `${prefix}${timestamp}${randomInt(10, 99)}`;
-}
-
-function randomPastDate(daysBack = 30) {
-  const d = new Date();
-  d.setDate(d.getDate() - randomInt(0, daysBack));
-  return d.toISOString().split("T")[0];
-}
+import { products, paymentMethods, orderStatuses } from "./data/misc.js";
+import { randomItem, randomInt, randomDigits, random } from "./utils/random.js";
 
 /**
  * Generate a fake e-commerce order.
- * @param {Object} options
- * @param {string} [options.status] - Force a specific status
- * @param {string} [options.paymentMethod] - Force payment method
+ * @returns {Object}
  */
-export function order({ status, paymentMethod } = {}) {
-  const product = pick(products);
+export function order() {
+  const product = randomItem(products);
   const price = randomInt(product.priceRange[0], product.priceRange[1]);
-  const qty = randomInt(1, 3);
-  const discount = randomInt(0, Math.floor(price * 0.3));
-  const deliveryCharge = price > 500 ? 0 : 49;
-  const total = price * qty - discount + deliveryCharge;
-  const selectedStatus = status || pick(orderStatuses);
-  const p = person();
-  const addr = address();
-
-  let deliveryDate = null;
-  if (selectedStatus === "Delivered") {
-    deliveryDate = randomPastDate(10);
-  } else if (
-    selectedStatus === "Shipped" ||
-    selectedStatus === "Out for Delivery"
-  ) {
-    const future = new Date();
-    future.setDate(future.getDate() + randomInt(1, 5));
-    deliveryDate = future.toISOString().split("T")[0];
-  }
+  const payment = randomItem(paymentMethods);
+  const status = randomItem(orderStatuses);
+  const orderId = `ORD${randomDigits(10)}`;
+  const quantity = randomInt(1, 3);
 
   return {
-    orderId: generateOrderId(),
+    orderId,
     product: product.name,
-    category: product.category,
-    quantity: qty,
-    pricePerUnit: price,
-    discount,
-    deliveryCharge,
-    total,
-    payment: paymentMethod || pick(paymentMethods),
-    status: selectedStatus,
-    courier:
-      selectedStatus !== "Ordered" && selectedStatus !== "Confirmed"
-        ? pick(couriers)
-        : null,
-    trackingId:
-      selectedStatus !== "Ordered"
-        ? `TRK${randomInt(100000000, 999999999)}`
-        : null,
-    customer: p.name,
-    phone: p.phone,
-    deliveryAddress: addr.full,
-    orderDate: randomPastDate(30),
-    estimatedDelivery: deliveryDate,
+    quantity,
+    price,
+    totalAmount: price * quantity,
+    payment,
+    status,
   };
 }
 
 /**
- * Generate multiple orders.
- * @param {number} count
- * @param {Object} options
+ * Generate a product listing.
+ * @returns {Object}
  */
-export function orders(count = 5, options = {}) {
-  return Array.from({ length: count }, () => order(options));
+export function product() {
+  const p = randomItem(products);
+  const price = randomInt(p.priceRange[0], p.priceRange[1]);
+  const discount = randomInt(5, 40);
+  const mrp = Math.round(price / (1 - discount / 100));
+  const sku = `SKU${randomDigits(8)}`;
+
+  return {
+    sku,
+    name: p.name,
+    price,
+    mrp,
+    discount: `${discount}%`,
+    inStock: random() > 0.15,
+    rating: parseFloat((3 + Math.random() * 2).toFixed(1)),
+    reviews: randomInt(5, 9999),
+  };
 }

@@ -1,70 +1,57 @@
-import { colleges, departments } from "./data/domain.js";
-import { person } from "./person.js";
-import { pick, randomInt, randomFloat } from "./utils/random.js";
+import { maleFirstNames, femaleFirstNames, lastNames } from "./data/names.js";
+import { colleges, courses, branches } from "./data/misc.js";
+import {
+  randomItem,
+  randomInt,
+  randomFloat,
+  randomDigits,
+  random,
+} from "./utils/random.js";
 
-const years = ["FY", "SY", "TY", "Final Year"];
-const divisions = ["A", "B", "C", "D"];
-const gradeMap = [
-  { min: 90, grade: "O", label: "Outstanding" },
-  { min: 80, grade: "A+", label: "Excellent" },
-  { min: 70, grade: "A", label: "Very Good" },
-  { min: 60, grade: "B+", label: "Good" },
-  { min: 50, grade: "B", label: "Above Average" },
-  { min: 40, grade: "C", label: "Average" },
-  { min: 0, grade: "F", label: "Fail" },
-];
-
-function getGrade(percentage) {
-  return (
-    gradeMap.find((g) => percentage >= g.min) || gradeMap[gradeMap.length - 1]
-  );
-}
+const regions = ["north", "south", "west", "east"];
 
 /**
- * Generate a realistic Indian student record.
+ * Generate a realistic Indian student profile.
  * @param {Object} options
- * @param {string} [options.gender] - 'male' | 'female'
- * @param {string} [options.region] - 'north' | 'south' | 'east' | 'west'
- * @param {string} [options.college] - Specific college name
- * @param {string} [options.department] - Specific department
+ * @param {'male'|'female'} [options.gender]
+ * @param {'north'|'south'|'west'|'east'} [options.region]
+ * @returns {Object}
  */
-export function student({ gender, region, college, department } = {}) {
-  const p = person({ gender, region });
-  const selectedCollege = college || pick(colleges);
-  const selectedDept = department || pick(departments);
-  const year = pick(years);
-  const div = pick(divisions);
-  const rollNo = `${year.slice(0, 2).toUpperCase()}${selectedDept.slice(0, 2).toUpperCase()}${randomInt(100, 999)}`;
-  const percentage = randomFloat(35, 98, 1);
-  const { grade, label } = getGrade(percentage);
-  const cgpa = parseFloat(
-    (percentage / 10 + randomFloat(-0.2, 0.2)).toFixed(2),
-  ).toFixed(2);
-  const clampedCgpa = Math.min(10, Math.max(0, parseFloat(cgpa)));
+export function student(options = {}) {
+  const region = options.region || randomItem(regions);
+  const gender = options.gender || (random() > 0.5 ? "male" : "female");
+
+  const firstPool =
+    gender === "male" ? maleFirstNames[region] : femaleFirstNames[region];
+  const firstName = randomItem(firstPool);
+  const lastName = randomItem(lastNames[region]);
+  const name = `${firstName} ${lastName}`;
+
+  const course = randomItem(courses);
+  const branch = randomItem(branches);
+  const college = randomItem(colleges);
+  const year = randomInt(1, 4);
+  const yearPrefixes = { 1: "FY", 2: "SY", 3: "TY", 4: "LY" };
+  const branchAbbr = branch
+    .split(" ")
+    .map((w) => w[0])
+    .join("")
+    .slice(0, 3)
+    .toUpperCase();
+  const rollNo = `${yearPrefixes[year]}${branchAbbr}${randomDigits(3)}`;
+
+  const percentage = randomFloat(40, 98, 1);
+  const cgpa = parseFloat((percentage / 9.5).toFixed(2));
 
   return {
-    name: p.name,
-    gender: p.gender,
+    name,
+    gender,
     rollNo,
-    prn: `${randomInt(20, 24)}${randomInt(10000, 99999)}`,
-    college: selectedCollege,
-    department: selectedDept,
-    year,
-    division: div,
+    course,
+    branch,
+    college,
+    year: `Year ${year}`,
     percentage,
-    cgpa: clampedCgpa,
-    grade,
-    gradeLabel: label,
-    email: p.email,
-    phone: p.phone,
+    cgpa,
   };
-}
-
-/**
- * Generate multiple student records.
- * @param {number} count
- * @param {Object} options
- */
-export function students(count = 5, options = {}) {
-  return Array.from({ length: count }, () => student(options));
 }
