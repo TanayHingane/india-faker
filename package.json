@@ -3,6 +3,9 @@
   "version": "1.0.2",
   "description": "Realistic Indian test data generator — names, addresses, UPI, Aadhaar-like IDs, bank details, students, orders, and more.",
   "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
   "scripts": {
     "test": "node test/index.test.js"
   },
@@ -22,13 +25,20 @@
     "banking",
     "ecommerce"
   ],
-  "author": "",
+  "author": "Tanay Hingane",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/TanayHingane/india-faker"
+    "url": "https://github.com/TanayHingane/india-faker.git"
+  },
+  "homepage": "https://github.com/TanayHingane/india-faker#readme",
+  "bugs": {
+    "url": "https://github.com/TanayHingane/india-faker/issues"
   },
   "engines": {
     "node": ">=14.0.0"
-  }
+  },
+  "files": [
+    "index.js"
+  ]
 }
