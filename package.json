@@ -1,6 +1,6 @@
 {
   "name": "india-faker",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Realistic Indian test data generator — names, addresses, UPI, Aadhaar-like IDs, bank details, students, orders, and more.",
   "main": "index.js",
   "exports": {
